@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Ice_Cream_Algorithm
 {
@@ -9,6 +10,7 @@ namespace Ice_Cream_Algorithm
             int j;
             bool allEqual = false;
             string[] flavours = new string[10];
+            int attempts = 10;
              
              do
              {
@@ -47,11 +49,20 @@ namespace Ice_Cream_Algorithm
                 {
                     allEqual = true;
                 }
+                 attempts--;
+                if (attempts < 0)
+                {
+                    Console.WriteLine("To many attempts");
+                    Console.WriteLine("Program is due to exit");
+                    Thread.Sleep(2000);
+                    System.Environment.Exit(1);
+                }
 
                   
             } while(!allEqual);
                 
-             
+              Console.WriteLine("All of you have choosen: {0}", flavours[0]);
+              Console.ReadKey(true);
            
         }
     }
